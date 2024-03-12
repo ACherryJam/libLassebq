@@ -12,7 +12,7 @@ extern const RValue** g_ConstValues;
 //#define other (-2.0)
 //#define all (-3.0)
 //#define noone (-4.0)
-#define global (-5.0)
+//#define global (-5.0)
 //#define local (-7.0)
 //#define true (1.0)
 //#define false (0.0)

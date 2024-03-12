@@ -597,7 +597,8 @@ bool internal_setvarb(CInstanceBase* obj, int varind, int arrind, RValue& val, l
 	else
 	{
 		RValue& ref(obj->GetYYVarRef(varind - 100000));
-		ref = val;
+		SET_RValue(&ref, &val, ARRAY_INDEX_NO_INDEX);
+
 		return true;
 	}
 }
@@ -747,7 +748,7 @@ int lua_GMLua_setvar(lua_State* _pL)
 	else
 	{
 		RValue& ref(inst->GetYYVarRef(static_cast<int>(varId)));
-		ref = varval;
+		SET_RValue(&ref, &varval, ARRAY_INDEX_NO_INDEX);
 	}
 
 	return 0;
@@ -1434,7 +1435,7 @@ int lua_GMLRVar_newindex(lua_State* _pL)
 	lua_Integer key = lua_tointeger(_pL, 2);
 	key--;
 
-	*(ARRAY_LVAL_RValue(*rV, static_cast<int>(key))) = LtoR(_pL, 3);
+	SET_RValue((ARRAY_LVAL_RValue(*rV, static_cast<int>(key))), &LtoR(_pL, 3), ARRAY_INDEX_NO_INDEX);
 	return 0;
 }
 

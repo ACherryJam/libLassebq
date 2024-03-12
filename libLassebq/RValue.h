@@ -52,12 +52,14 @@ typedef char*(*YYDupStr)(const char* _pStr);
 typedef char*(*YYStrDupT)(const char* _pS);
 typedef void(*YYFreeT)(void* _pMemory);
 typedef RValue*(*ARRAYLVal)(RValue* _pV, int _index);
+typedef void(*SET_RValueT)(RValue *pDest, RValue *pV, int index);
 extern YYSetStr YYSetString;
 extern YYCreStr YYCreateString;
 extern YYStrDupT YYStrDup;
 extern YYFreeT YYFree;
 extern FREE_RVal_Pre FREE_RValue__Pre;
 extern ARRAYLVal ARRAY_LVAL_RValue;
+extern SET_RValueT SET_RValue;
 
 template <typename T> struct _RefFactory
 {

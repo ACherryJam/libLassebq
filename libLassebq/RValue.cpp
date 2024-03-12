@@ -11,6 +11,7 @@ YYFreeT YYFree = nullptr;
 ARRAYLVal ARRAY_LVAL_RValue = nullptr;
 RVariableRoutine* g_BuiltinVars = nullptr;
 AllocNewVarSlotT Code_Variable_FindAlloc_Slot_From_Name = nullptr;
+SET_RValueT SET_RValue = nullptr;
 
 void RValue::__localFree()
 {

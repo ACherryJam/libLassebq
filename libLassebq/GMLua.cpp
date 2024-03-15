@@ -507,7 +507,9 @@ RValue LtoR(lua_State* _pL, int a)
 			lua_Unsigned arrLen = lua_tointeger(_pL, -1);
 			lua_pop(_pL, 1);
 
-			RValue arr(0.0); // will be filled.
+			RValue arr(0.0);
+			CreateArray(&arr, 0);
+
 			if (arrLen > 0)
 			{
 				for (lua_Unsigned i = arrLen - 1; i > -1; i--)

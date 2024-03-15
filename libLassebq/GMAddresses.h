@@ -36,6 +36,7 @@
 #define DispatchAsync_Addr     (0x00000000u)
 #define New_Room_Addr          (0x01CF8904u)
 #define SET_RValue_Addr		   (0x014ddb20u)
+#define CreateArray_Addr	   (0x01504d80u)
 #endif
 
 #ifdef KZ_105_GOG /* Katana ZERO v1.0.5 Windows GOG */

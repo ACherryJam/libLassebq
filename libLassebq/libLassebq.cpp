@@ -696,6 +696,7 @@ void lassebq_initYYC() {
 	YYStrDup = reinterpret_cast<YYStrDupT>(exeAsUint + YYStrDup_Addr);
 	YYFree = reinterpret_cast<YYFreeT>(exeAsUint + YYFree_Addr);
 	SET_RValue = reinterpret_cast<SET_RValueT>(exeAsUint + SET_RValue_Addr);
+	CreateArray = reinterpret_cast<CreateArrayT>(exeAsUint + CreateArray_Addr);
 	Code_Variable_FindAlloc_Slot_From_Name = reinterpret_cast<AllocNewVarSlotT>(exeAsUint + AllocNewVarSlot_Addr);
 	g_Self = nullptr;
 	g_Other = nullptr;

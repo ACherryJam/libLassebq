@@ -1,0 +1,4 @@
+LIBRARY
+EXPORTS
+    CreateDXGIFactory1 @11
+    CreateDXGIFactory2 @12

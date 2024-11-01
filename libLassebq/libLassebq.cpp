@@ -38,8 +38,6 @@ char* llbq_p2 = nullptr;
 char* llbq_p3 = nullptr;
 char* llbq_p4 = nullptr;
 
-const char* const forbidden_script = "gml_Script_dialogue_prison_call_noPenis";
-
 // <object_index, <event_key, function_pointer>>
 std::unordered_map<int, std::unordered_map<unsigned long long, void*>> EventPatchMap;
 
@@ -611,6 +609,7 @@ void lassebq_initYYC() {
 	atexit(sch_end);
 
 	InitGMLuaConfig();
+	
 	if (!g_NoConsole) {
 		AllocConsoleQuick();
 
@@ -674,13 +673,6 @@ void lassebq_initYYC() {
 		}
 
 		fS[g_GMLScripts[i].pName] = i;
-		if (strcmp(g_GMLScripts[i].pName, forbidden_script) == 0)
-		{
-			for (;;)
-			{
-				std::cout << "fuck you ";
-			}
-		}
 	}
 
 	g_RunRoom = reinterpret_cast<CRoom**>(exeAsUint + Run_Room_Addr);
@@ -806,12 +798,50 @@ funcR lassebq_shutdown()
 	}
 }
 
+
+//using pInitLLVM = void(__cdecl *)(void *pVars);
+using pInitLLVM = bool(__cdecl *)(void);
+static pInitLLVM initllvm_trampoline = nullptr;
+bool __cdecl InitLLVM_detour(void) {
+	lassebq_initYYC();
+	return initllvm_trampoline();
+}
+
+void lassebq_InitHook(void)
+{
+	exeBase = GetModuleHandleW(nullptr);
+	uintptr_t exeAsUint = reinterpret_cast<uintptr_t>(exeBase);
+	initllvm_trampoline = reinterpret_cast<pInitLLVM>(exeAsUint + InitLLVM_Addr);
+
+	LONG e = NO_ERROR;
+	e = DetourTransactionBegin();
+	if (e != NO_ERROR) {
+		MessageBoxA(NULL, "Couldn't start initialization. Ask Cherry about it.", "Detour Error", MB_OK);
+		return;
+	}
+	e = DetourUpdateThread(GetCurrentThread());
+	if (e != NO_ERROR) {
+		MessageBoxA(NULL, "Couldn't update current thread. Ask Cherry about it.", "Detour Error", MB_OK);
+		return;
+	}
+	e = DetourAttach(&initllvm_trampoline, InitLLVM_detour);
+	if (e != NO_ERROR) {
+		MessageBoxA(NULL, "Couldn't attach the detour. Ask Cherry about it.", "Detour Error", MB_OK);
+		return;
+	}
+	e = DetourTransactionCommit();
+	if (e != NO_ERROR) {
+		MessageBoxA(NULL, "Couldn't commit transaction. Ask Cherry about it.", "Detour Error", MB_OK);
+		return;
+	}
+}
+
 funcV RegisterCallbacks(char* p1, char* p2, char* p3, char* p4)
 {
 	// do the job.
-	llbq_p1 = p1;
-	llbq_p2 = p2;
-	llbq_p3 = p3;
-	llbq_p4 = p4;
+	//llbq_p1 = p1;
+	//llbq_p2 = p2;
+	//llbq_p3 = p3;
+	//llbq_p4 = p4;
 	lassebq_initYYC();
 }

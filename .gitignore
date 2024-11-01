@@ -6,3 +6,7 @@
 /libLassebq/libLassebq.vcxproj.user
 libLassebq.VC.db
 /libLassebq/x64/
+/Loader/Debug
+/Loader/Release
+/Loader/x64/
+/x64/

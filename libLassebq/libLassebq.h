@@ -18,6 +18,7 @@ void lassebq_testDummyFunction();
 #define funcS extern "C" __declspec(dllexport) const char * __cdecl 
 #define funcV extern "C" __declspec(dllexport) void         __cdecl 
 
+void lassebq_InitHook(void);
 void lassebq_initYYC(void);
 
 funcR lassebq_init();

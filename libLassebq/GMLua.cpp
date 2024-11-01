@@ -404,8 +404,13 @@ void RegisterAssets(lua_State* _pL)
 	std::cout << "Done!" << std::endl;
 }
 
+
+
 void InitGMLuaScripts(void)
 {
+	Lscripts = { "./script.lua", "./script.luac" };
+	return;
+
 	std::ifstream list("loadlist.txt");
 
 	std::string line;
@@ -417,8 +422,26 @@ void InitGMLuaScripts(void)
 	list.close();
 }
 
+void InitInteriorhoodLuaConfig(void) {
+#ifdef DEBUG
+	g_NoConsole = false;
+#else
+	g_NoConsole = true;
+#endif
+	g_AddCollisionEvents = false;
+	g_AddScripts = true;
+	g_ThrowErrors = true;
+	g_EnableBeforeEvents = false;
+	g_CareAboutGMLuaObjects = false;
+
+	//WaitForDebugger();
+}
+
 void InitGMLuaConfig(void)
 {
+	InitInteriorhoodLuaConfig();
+	return;
+
 	bool wait = false;
 	std::ifstream cfg("GMLuaConfig.txt"); // the config file is just a bunch of lines for now, too lazy to parse INI.
 	std::string line;

@@ -37,6 +37,8 @@
 #define New_Room_Addr          (0x01CF8904u)
 #define SET_RValue_Addr		   (0x014ddb20u)
 #define CreateArray_Addr	   (0x01504d80u)
+//#define InitLLVM_Addr          (0x014b78f0u)
+#define InitLLVM_Addr          (0x014eb350u)
 #endif
 
 #ifdef KZ_105_GOG /* Katana ZERO v1.0.5 Windows GOG */

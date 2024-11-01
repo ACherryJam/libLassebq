@@ -215,6 +215,7 @@ RValue& SH_hookerRoutine(const int _myIndex, CInstance* _pSelf, CInstance* _pOth
 
 #define DTR_LLBQ_CHK(x,msg) if ((x) != NO_ERROR) { std::cout << "[Hooker]: Detours call failed: " << (msg) << ". result=" << (x) << std::endl; abort(); }
 
+
 void SH_hookGMLScript(const YYGMLFunc& ref, const int gmlScriptIndex)
 {
 	LONG e = NO_ERROR;

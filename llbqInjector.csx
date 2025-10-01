@@ -20,7 +20,7 @@ void InjectDLL()
 				Filename = Data.Strings.MakeString("libLassebq.dll"),
 				InitScript = Data.Strings.MakeString("lassebq_init"),
 				CleanupScript = Data.Strings.MakeString("lassebq_shutdown"),
-				Kind = UndertaleExtensionKind.DLL,
+				Kind = UndertaleExtensionKind.Dll,
 				Functions = new UndertalePointerList<UndertaleExtensionFunction>()
 				{
 					new UndertaleExtensionFunction()
